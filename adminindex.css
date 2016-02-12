@@ -1,0 +1,46 @@
+form{
+	text-align: center;
+	position: relative;
+	top:35%;
+}
+
+input.sub{
+	width: 20px;
+	height: 10px;
+}
+
+label{
+	text-align: center;
+	font-size: 24pt;
+}
+
+input{
+	width: 25%;
+	height: 5%;
+	font-size: 15pt;
+}
+
+#sub{
+	width: 10%;
+	height:5%;
+	font-size: 15pt;
+}
+.userform form{
+	margin-left: 15px;
+	margin-top: 150px;
+
+}
+.clearform{
+	overflow: auto;
+}
+
+.nav-bar{
+	float: left;
+	width: 200px;
+
+}
+
+.nav-bar li{
+	list-style-type: none;
+	padding-top: 35px;
+}
