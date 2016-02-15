@@ -29,8 +29,8 @@
 				<div class="param">
 
 					<ul>
-						<li><input type="search" id="search"></li>
-						<li><input type= "submit" id="searchbutton" value="Search"></li>
+						<li><form method="post" action="search.php?go" id="searchform"><input type="search" id="search" name="name">
+						<input type= "submit" id="searchbutton" value="Search" name="submit"></form></li>
 						<li><input type="radio">Agency Name</li>
 						<li><input type="radio">Category</li>
 						<li><input type="radio">Event Name</li>
