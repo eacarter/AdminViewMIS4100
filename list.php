@@ -18,25 +18,37 @@
 
 
 <body>
+
 <?php
+require ('connection.php');
+/**$servername = "localhost";
+$username = "mis4100ruby";
+$password = "MIS41002016";
+$dbname = "mis4100r_volunteering";
 
-	if(isset($_POST['submit'])){
-	if(isset($_GET['go'])){
-	if(preg_match("^/[A-Za-z]+/^", $_POST['name'])){ 
-	   $name=$_POST['name']; 
 
-	   include 'connection.php';
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+     die("Connection failed: " . $conn->connect_error);
+} **/
 
-	   $sql= "SELECT opportunityID, opportunityName, opportunityCity, opportunityDescription,opportunityStartDate,opportunityEndDate, agencyName  FROM opportunity, agency WHERE  opportunityName LIKE '%" . $name . "%'  OR agencyName LIKE '%" . $name  ."%'";
-	
-		$result=mysqli_query($mysqlConnection,$sql);
+$sql = "Select opportunityID, opportunityName, opportunityCity, opportunityDescription,opportunityStartDate,opportunityEndDate, agencyName  FROM opportunity, agency ";
+/**$result = $conn->query($sql); **/
+$result = mysqli_query($mysqlConnection,$sql);
+$str_ID = 'opportunityID' ;
 
-		while ($row = mysqli_fetch($result)) {
-		
-		$id = $row["opportunityID"];
-			echo"
-     	<li class='list-group-item' >
-     		<a href = \" search.php?id= $id \">
+
+if ($result->num_rows > 0) {
+     // output data of each row
+     echo"<ul id= 'listwork'>";
+     echo"<div class='container'>";
+     echo"<div class='list-group'>";
+     
+     while($row = $result->fetch_assoc()) {
+     echo"
+     	<li class='list-group-item'  id= ".$row['opportunityID'].">
       		<h3 class='list-group-item-heading'><strong>". $row["opportunityName"]."</strong></h3>
       		<h4 class='list-group-item-heading'>". $row["agencyName"]. "</h4>
       		<h6 class='list-group-item-heading'>". $row["opportunityCity"]. "</h6>
@@ -44,17 +56,45 @@
       		<p class='list-group-item-text'>". $row["opportunityDescription"]. "</p>
     	</li>";
      
-			
-		}
+ 
+     }
+     
+     echo"</div>";
+     echo"</div>";
+     echo"</ul>";
+     
+} else {
+     echo "0 results";
+}
 
-	 }
-	 } 
-	else{
-		echo "<p>enter stuff please</p>";
-	}	
-	
-	}
-?>
+/**$conn->close(); **/
+$mysqlConnection->close();
+?>  
 </body>
+
+<script> 
+			$(".list-group-item").on('click',function(){ 
+			the_id = $(this).attr('id'); 
+			
+			    $.ajax({
+			        type: "POST",
+			        url: "adminview.php?id=" + the_id,
+			        success: function(data){
+			          $("#adminview").html(data);
+			
+			            }
+			        });
+			});
+		</script>
+		
+		<script>
+		$("#listwork li").on("click", function(){
+  			alert($(this).text());
+  			
+
+		});
+		
+		</script>
+
 
 </html>

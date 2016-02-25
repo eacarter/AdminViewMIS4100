@@ -1,7 +1,7 @@
 form{
 	text-align: center;
 	position: relative;
-	top:35%;
+	
 }
 
 input.sub{
@@ -21,13 +21,14 @@ input{
 }
 
 #sub{
-	width: 10%;
-	height:5%;
-	font-size: 15pt;
+	width: 15%;
+	height:4%;
+	font-size: 12pt;
 }
 .userform form{
 	margin-left: 15px;
-	margin-top: 150px;
+	margin-top: 175px;
+	width: 90%;
 
 }
 .clearform{
@@ -42,5 +43,15 @@ input{
 
 .nav-bar li{
 	list-style-type: none;
-	padding-top: 35px;
+	padding-top: 60px;	
 }
+.passform {
+	width: 20%;
+	height: 4%;
+	font-size: 10pt;
+	}
+
+
+	
+
+	
